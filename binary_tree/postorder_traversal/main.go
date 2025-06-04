@@ -32,7 +32,6 @@ func postorderTraversal(root *tree.TreeNode) []int {
 
 func (r *Res) traversal(node *tree.TreeNode) {
 	if node != nil {
-
 		r.traversal(node.Left)
 		r.traversal(node.Right)
 		r.Res = append(r.Res, node.Val)

@@ -2,12 +2,45 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/leetCodeTasks/datastruct/binary_tree"
 )
 
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+func New(rootValue int) *TreeNode {
+	return &TreeNode{
+		Val: rootValue,
+	}
+}
+
+func (b *TreeNode) Add(val int) {
+	add(b, val)
+}
+
+func add(leaf *TreeNode, val int) *TreeNode {
+	if leaf == nil {
+		return &TreeNode{
+			Left:  nil,
+			Right: nil,
+			Val:   val,
+		}
+	}
+	switch {
+	case leaf.Val > val:
+		leaf.Left = add(leaf.Left, val)
+	case leaf.Val < val:
+		leaf.Right = add(leaf.Right, val)
+	case leaf.Val == val:
+		return leaf
+	}
+	return leaf
+}
+
 func main() {
-	myTree := binary_tree.New(6)
+	myTree := New(6)
 	myTree.Add(2)
 	myTree.Add(8)
 	myTree.Add(0)
@@ -20,7 +53,7 @@ func main() {
 	fmt.Println(maxDepth(myTree))
 }
 
-func maxDepth(root *binary_tree.TreeNode) int {
+func maxDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}

@@ -33,11 +33,5 @@ func print(leaf *TreeNode, buffer *bytes.Buffer) {
 		print(leaf.Right, buffer)
 		buffer.WriteString(")")
 	}
-	//if leaf.Right == nil {
-	//	buffer.WriteString(")")
-	//}
-	//if leaf.Left == nil {
-	//	buffer.WriteString(")")
-	//}
 	return
 }
